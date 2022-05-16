@@ -1,4 +1,5 @@
 import { Tab } from "@headlessui/react";
+import { useState } from "react";
 import Action from "./Action";
 
 function classNames(...classes) {
@@ -6,7 +7,10 @@ function classNames(...classes) {
 }
 
 export default function SchemeDetail({ scheme, user, docs }) {
+  console.log(docs);
   const userData = user;
+  // const [docsInfo, setDocsInfo] = useState({});
+  let docsInfo = [];
 
   for (const key in userData) {
     if (key === "applied" || key === "documents" || key === "avatar") {
@@ -16,10 +20,17 @@ export default function SchemeDetail({ scheme, user, docs }) {
     }
   }
 
+  for (const key in docs) {
+    // setDocsInfo({...docs[key]})
+    docsInfo.push(docs[key]);
+  }
+
+  console.log(docsInfo);
+
   const tabList = {
     "Scheme Detail": scheme,
     "User Detail": user,
-    Documents: docs,
+    Documents: docsInfo,
   };
 
   return (
@@ -60,6 +71,7 @@ export default function SchemeDetail({ scheme, user, docs }) {
                       key={index}
                       className="relative rounded-md p-3 hover:bg-gray-100"
                     >
+                      {console.log(item)}
                       <h3 className="text-sm font-normal leading-5 uppercase tracking-widest">
                         {item}
                       </h3>
