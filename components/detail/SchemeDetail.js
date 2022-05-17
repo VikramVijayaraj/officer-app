@@ -1,4 +1,6 @@
 import { Tab } from "@headlessui/react";
+import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 import Action from "./Action";
 
@@ -7,7 +9,7 @@ function classNames(...classes) {
 }
 
 export default function SchemeDetail({ scheme, user, docs }) {
-  console.log(docs);
+  // console.log(docs);
   const userData = user;
   // const [docsInfo, setDocsInfo] = useState({});
   let docsInfo = [];
@@ -30,7 +32,7 @@ export default function SchemeDetail({ scheme, user, docs }) {
   const tabList = {
     "Scheme Detail": scheme,
     "User Detail": user,
-    Documents: docsInfo,
+    // Documents: docsInfo,
   };
 
   return (
@@ -54,6 +56,19 @@ export default function SchemeDetail({ scheme, user, docs }) {
                 {tab}
               </Tab>
             ))}
+            <Tab
+              className={({ selected }) =>
+                classNames(
+                  "w-full rounded-lg py-2.5 text-sm font-medium leading-5 text-blue-700",
+                  "ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2",
+                  selected
+                    ? "bg-white shadow"
+                    : "text-blue-100 hover:bg-white/[0.12] hover:text-white"
+                )
+              }
+            >
+              Documents
+            </Tab>
           </Tab.List>
 
           <Tab.Panels className="mt-2">
@@ -71,7 +86,6 @@ export default function SchemeDetail({ scheme, user, docs }) {
                       key={index}
                       className="relative rounded-md p-3 hover:bg-gray-100"
                     >
-                      {console.log(item)}
                       <h3 className="text-sm font-normal leading-5 uppercase tracking-widest">
                         {item}
                       </h3>
@@ -84,6 +98,28 @@ export default function SchemeDetail({ scheme, user, docs }) {
                 </ul>
               </Tab.Panel>
             ))}
+            <Tab.Panel>
+              <ul className="bg-white">
+                {docsInfo.map((doc, index) => (
+                  <div className="py-2 px-4 my-4" key={index}>
+                    <a href={`${doc.url}`} target="_blank" rel="noreferrer">
+                      <div className="flex flex-row shadow-md rounded-md p-4 hover:bg-slate-50">
+                        <Image
+                          src="/icons/doc-icon.png"
+                          alt="doc"
+                          width={50}
+                          height={50}
+                        />
+                        <div className="ml-2">
+                          <li>{doc.name}</li>
+                          <li>{doc.type}</li>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                ))}
+              </ul>
+            </Tab.Panel>
           </Tab.Panels>
         </Tab.Group>
       </div>
