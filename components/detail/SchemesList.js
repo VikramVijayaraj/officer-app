@@ -26,6 +26,7 @@ export default function SchemesList({ user }) {
                 hover:translate-x-1 hover:bg-slate-100 duration-300"
                 onClick={clickHandler.bind(this, user.applied[item])}
               >
+                {console.log(item)}
                 <div>
                   <li className="">{user.applied[item].sname}</li>
                   <li className="font-light">{user.applied[item].seligible}</li>

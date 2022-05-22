@@ -1,7 +1,6 @@
 import { Tab } from "@headlessui/react";
 import Image from "next/image";
 import Acknowledge from "../Acknowledge";
-import Action from "./Action";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
