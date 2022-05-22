@@ -16,7 +16,7 @@ export default function SchemesList({ user }) {
         {user.applied &&
           Object.keys(user.applied).map((item, index) => (
             <Link
-              href={`/scheme/${user.applied[item].name}`}
+              href={`/scheme/${user.applied[item].sname}`}
               key={index}
               passHref
             >
@@ -27,8 +27,8 @@ export default function SchemesList({ user }) {
                 onClick={clickHandler.bind(this, user.applied[item])}
               >
                 <div>
-                  <li className="">{user.applied[item].name}</li>
-                  <li className="">{user.applied[item].beneficiary}</li>
+                  <li className="">{user.applied[item].sname}</li>
+                  <li className="font-light">{user.applied[item].seligible}</li>
                 </div>
                 <p className="self-center text-2xl font-normal">{">"}</p>
               </div>

@@ -12,6 +12,10 @@ export async function fetchApplications() {
       userApplications.push(response.data[key]);
     }
   }
-  
+
   return userApplications;
+}
+
+export function setTrack(uid, schemeName, track) {
+  axios.patch(BASE_URL + `/users/${uid}/applied/${schemeName}.json`, track);
 }

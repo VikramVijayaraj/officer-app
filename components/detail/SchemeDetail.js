@@ -1,7 +1,6 @@
 import { Tab } from "@headlessui/react";
 import Image from "next/image";
-import Link from "next/link";
-import { useState } from "react";
+import Acknowledge from "../Acknowledge";
 import Action from "./Action";
 
 function classNames(...classes) {
@@ -9,9 +8,7 @@ function classNames(...classes) {
 }
 
 export default function SchemeDetail({ scheme, user, docs }) {
-  // console.log(docs);
   const userData = user;
-  // const [docsInfo, setDocsInfo] = useState({});
   let docsInfo = [];
 
   for (const key in userData) {
@@ -23,16 +20,12 @@ export default function SchemeDetail({ scheme, user, docs }) {
   }
 
   for (const key in docs) {
-    // setDocsInfo({...docs[key]})
     docsInfo.push(docs[key]);
   }
-
-  console.log(docsInfo);
 
   const tabList = {
     "Scheme Detail": scheme,
     "User Detail": user,
-    // Documents: docsInfo,
   };
 
   return (
@@ -77,7 +70,7 @@ export default function SchemeDetail({ scheme, user, docs }) {
                 key={idx}
                 className={classNames(
                   "rounded-xl bg-white p-3",
-                  "ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2"
+                  "ring-white ring-opacity-60 ring-offset-2 focus:outline-none focus:ring-2"
                 )}
               >
                 <ul>
@@ -98,10 +91,15 @@ export default function SchemeDetail({ scheme, user, docs }) {
                 </ul>
               </Tab.Panel>
             ))}
-            <Tab.Panel>
-              <ul className="bg-white">
+            <Tab.Panel
+              className={classNames(
+                "rounded-xl bg-white p-3",
+                "ring-white ring-opacity-60 ring-offset-2 focus:outline-none focus:ring-2"
+              )}
+            >
+              <ul>
                 {docsInfo.map((doc, index) => (
-                  <div className="py-2 px-4 my-4" key={index}>
+                  <div className="my-4" key={index}>
                     <a href={`${doc.url}`} target="_blank" rel="noreferrer">
                       <div className="flex flex-row shadow-md rounded-md p-4 hover:bg-slate-50">
                         <Image
@@ -123,23 +121,9 @@ export default function SchemeDetail({ scheme, user, docs }) {
           </Tab.Panels>
         </Tab.Group>
       </div>
-      <Action />
+
+      {/* <Action /> */}  
+      <Acknowledge uid={userData.uid} schemeName={scheme.sname} />
     </div>
   );
 }
-
-// console.log(scheme);
-// return (
-// <div className="w-full m-4">
-//   <ul className="bg-white rounded-xl shadow-md p-4">
-//     <h1 className="m-2 text-2xl mb-8 font-light tracking-widest">Scheme Detail</h1>
-//     {Object.keys(scheme).map((item, index) => (
-//       <div key={index} className="m-2 mb-4">
-//         <li className="uppercase font-semibold tracking-widest">{item}</li>
-//         <li>{scheme[item]}</li>
-//       </div>
-//     ))}
-//   </ul>
-// </div>
-// );
-// }

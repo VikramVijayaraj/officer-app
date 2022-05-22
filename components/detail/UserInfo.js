@@ -23,6 +23,9 @@ export default function UserInfo({ user }) {
 
       <h1 className="font-bold mt-3">Email ID</h1>
       <p>{user.email}</p>
+      
+      <h1 className="font-bold mt-3">Beneficiary Type</h1>
+      <p>{user.beneficiaryType}</p>
 
       <h1 className="font-bold mt-3">Gender</h1>
       <p>{user.gender}</p>
